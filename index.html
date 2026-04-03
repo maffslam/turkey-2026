@@ -225,24 +225,29 @@ a{color:var(--accent)}
       <div class="card-icon" style="background:rgba(168,85,247,0.15)">⏰</div>
       <div>
         <div class="card-title">Departure Day — Wed 9 Apr</div>
-        <div class="card-subtitle">LGW North Terminal → Dalaman</div>
+        <div class="card-subtitle">Jersey → Gatwick → Dalaman</div>
       </div>
     </div>
     <div class="timeline">
       <div class="timeline-item">
-        <div class="tl-time">TBC</div>
+        <div class="tl-time">Early AM</div>
         <div class="tl-event">Leave home</div>
         <div class="tl-note">Dog to Sophie before this</div>
       </div>
       <div class="timeline-item">
-        <div class="tl-time">TBC</div>
-        <div class="tl-event">Arrive at Gatwick North Terminal</div>
-        <div class="tl-note">Aim for ~2.5hrs before departure</div>
+        <div class="tl-time">~07:30</div>
+        <div class="tl-event">EasyJet Jersey → Gatwick</div>
+        <div class="tl-note">Jersey Airport (JER) → London Gatwick (LGW)</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-time">~09:00</div>
+        <div class="tl-event">Arrive Gatwick</div>
+        <div class="tl-note">Landside wait — ~6hrs until Turkey flight</div>
       </div>
       <div class="timeline-item">
         <div class="tl-time">15:20</div>
         <div class="tl-event">Flight EZY8565 departs</div>
-        <div class="tl-note">Gatwick (LGW) → Dalaman (DLM)</div>
+        <div class="tl-note">Gatwick (LGW) North Terminal → Dalaman (DLM)</div>
       </div>
       <div class="timeline-item">
         <div class="tl-time">21:30 (local)</div>
@@ -253,6 +258,38 @@ a{color:var(--accent)}
         <div class="tl-time">~22:00</div>
         <div class="tl-event">Coach transfer to hotel</div>
         <div class="tl-note">Look for TUI reps at airport</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(59,130,246,0.15)">🔙</div>
+      <div>
+        <div class="card-title">Return — Mon 20 → Tue 21 Apr</div>
+        <div class="card-subtitle">Dalaman → Gatwick → Hotel → Jersey</div>
+      </div>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="tl-time">14:40</div>
+        <div class="tl-event">Flight EZY8564 departs Dalaman</div>
+        <div class="tl-note">DLM → LGW · ~4h 30m</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-time">17:10</div>
+        <div class="tl-event">Arrive Gatwick</div>
+        <div class="tl-note">North Terminal</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-time">Evening</div>
+        <div class="tl-event">Hotel near Gatwick (overnight)</div>
+        <div class="tl-note">Mon night — TBC which hotel</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-time">~07:35</div>
+        <div class="tl-event">Tue 21 Apr — EasyJet Gatwick → Jersey</div>
+        <div class="tl-note">🎂 Fintan's birthday! · Boys back to school</div>
       </div>
     </div>
   </div>
@@ -283,13 +320,41 @@ a{color:var(--accent)}
     <div class="ref-sub">Use this for online check-in at easyjet.com</div>
   </div>
 
-  <!-- Outbound -->
+  <!-- Jersey → Gatwick (Outbound) -->
+  <div class="card flight-card" style="border-left-color:var(--purple)">
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(168,85,247,0.15)">🛫</div>
+      <div>
+        <div class="card-title">Jersey → Gatwick — Wed 9 Apr</div>
+        <div class="card-subtitle">EasyJet · Separate booking</div>
+      </div>
+    </div>
+    <div class="flight-route">
+      <div class="flight-airport">
+        <div class="code">JER</div>
+        <div class="name">Jersey<br>Airport</div>
+        <div class="time">~07:30</div>
+      </div>
+      <div class="flight-line"><span class="plane">✈️</span></div>
+      <div class="flight-airport">
+        <div class="code">LGW</div>
+        <div class="name">London Gatwick</div>
+        <div class="time">~09:00</div>
+      </div>
+    </div>
+    <div class="flight-meta">
+      <div class="flight-tag"><strong>Duration:</strong> ~1h 15m</div>
+      <div class="flight-tag"><strong>Booking:</strong> Separate to TUI</div>
+    </div>
+  </div>
+
+  <!-- Gatwick → Dalaman (Outbound) -->
   <div class="card flight-card">
     <div class="card-header">
       <div class="card-icon" style="background:rgba(240,165,0,0.15)">🛫</div>
       <div>
-        <div class="card-title">Outbound — Wed 9 Apr</div>
-        <div class="card-subtitle">EasyJet · EZY8565</div>
+        <div class="card-title">Gatwick → Dalaman — Wed 9 Apr</div>
+        <div class="card-subtitle">EasyJet · EZY8565 · TUI booking</div>
       </div>
     </div>
     <div class="flight-route">
@@ -348,6 +413,48 @@ a{color:var(--accent)}
     <div style="margin-top:12px">
       <div style="font-size:0.75rem;color:var(--text3);margin-bottom:4px">Passengers</div>
       <div style="font-size:0.82rem;color:var(--text2)">Mr Matthew Clegg · Mrs Michelle Clegg · Master Fintan Clegg · Master Jonathan Clegg</div>
+    </div>
+  </div>
+
+  <!-- Gatwick Hotel Overnight -->
+  <div class="card" style="border-left:3px solid var(--purple)">
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(168,85,247,0.15)">🏨</div>
+      <div>
+        <div class="card-title">Gatwick Hotel — Mon 20 Apr</div>
+        <div class="card-subtitle">Overnight before Jersey flight</div>
+      </div>
+    </div>
+    <div class="info-grid">
+      <div class="info-item full"><div class="label">Hotel</div><div class="value">TBC — book airport hotel</div></div>
+    </div>
+  </div>
+
+  <!-- Gatwick → Jersey (Return) -->
+  <div class="card flight-card" style="border-left-color:var(--purple)">
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(168,85,247,0.15)">🛬</div>
+      <div>
+        <div class="card-title">Gatwick → Jersey — Tue 21 Apr</div>
+        <div class="card-subtitle">EasyJet · Separate booking · 🎂 Fintan's birthday!</div>
+      </div>
+    </div>
+    <div class="flight-route">
+      <div class="flight-airport">
+        <div class="code">LGW</div>
+        <div class="name">London Gatwick</div>
+        <div class="time">~07:35</div>
+      </div>
+      <div class="flight-line"><span class="plane">✈️</span></div>
+      <div class="flight-airport">
+        <div class="code">JER</div>
+        <div class="name">Jersey<br>Airport</div>
+        <div class="time">~08:50</div>
+      </div>
+    </div>
+    <div class="flight-meta">
+      <div class="flight-tag"><strong>Duration:</strong> ~1h 15m</div>
+      <div class="flight-tag"><strong>Note:</strong> Boys back to school</div>
     </div>
   </div>
 
@@ -425,8 +532,10 @@ const TODO_ITEMS = [
   { id: 't10', text: 'Lock all windows & doors', note: '', group: 'Home' },
   { id: 't11', text: 'Bins out (if collection day)', note: '', group: 'Home' },
   { id: 't12', text: 'Set light timers / smart plugs', note: '', group: 'Home' },
-  { id: 't13', text: 'Matt — arrange return flight', note: 'Via work, same flights', group: 'Flights', priority: 'high' },
+  { id: 't13', text: 'Matt — arrange return flight via work', note: 'Same flights as family, booked through work', group: 'Flights', priority: 'high' },
   { id: 't14', text: 'Select EasyJet seats (optional)', note: 'Extra fee — or free allocation at check-in', group: 'Flights' },
+  { id: 't20', text: 'Check in for Jersey ↔ Gatwick flights', note: 'Separate EasyJet booking — check ref', group: 'Flights', priority: 'high' },
+  { id: 't21', text: 'Book Gatwick airport hotel (Mon 20 Apr)', note: 'Overnight before Tue 07:35 Jersey flight', group: 'Flights', priority: 'high' },
   { id: 't15', text: 'Charge devices & power banks', note: 'Night before', group: 'Day Before' },
   { id: 't16', text: 'Pack hand luggage last bits', note: 'Snacks, entertainment for kids', group: 'Day Before' },
   { id: 't17', text: 'Check FCDO Turkey advice', note: 'gov.uk/foreign-travel-advice/turkey', group: 'Admin' },
