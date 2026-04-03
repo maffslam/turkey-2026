@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Turkey 2026 🇹🇷</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --bg:#0f1117;--surface:#1a1d27;--surface2:#242836;--surface3:#2e3345;
+  --accent:#f0a500;--accent2:#ff6b35;--green:#22c55e;--green-dim:#166534;
+  --red:#ef4444;--blue:#3b82f6;--purple:#a855f7;
+  --text:#e8eaed;--text2:#9ca3af;--text3:#6b7280;
+  --radius:14px;--radius-sm:10px;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);min-height:100dvh;overflow-x:hidden;padding-bottom:80px}
+a{color:var(--accent)}
+
+/* Header */
+.header{padding:16px 20px 12px;text-align:center;position:relative}
+.header h1{font-size:1.5rem;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.header .subtitle{font-size:0.8rem;color:var(--text2);margin-top:2px;letter-spacing:0.5px}
+
+/* Global Progress */
+.global-progress{margin:0 20px 8px;background:var(--surface);border-radius:var(--radius);padding:12px 16px}
+.global-progress .label{font-size:0.75rem;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;display:flex;justify-content:space-between}
+.progress-bar{height:6px;background:var(--surface3);border-radius:3px;overflow:hidden}
+.progress-bar .fill{height:100%;border-radius:3px;transition:width 0.5s ease,background 0.3s;background:var(--accent)}
+.progress-bar .fill.complete{background:var(--green)}
+
+/* Tab Navigation */
+.tab-bar{display:flex;gap:6px;padding:8px 20px 6px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab-btn{flex-shrink:0;padding:8px 16px;border-radius:20px;border:none;background:var(--surface);color:var(--text2);font-size:0.82rem;font-weight:600;cursor:pointer;transition:all 0.2s;position:relative}
+.tab-btn.active{background:var(--accent);color:#000}
+.tab-btn .badge{position:absolute;top:-4px;right:-4px;background:var(--red);color:#fff;font-size:0.6rem;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700}
+
+/* Tab Content */
+.tab-content{display:none;padding:12px 20px}
+.tab-content.active{display:block}
+
+/* Cards */
+.card{background:var(--surface);border-radius:var(--radius);padding:16px;margin-bottom:12px}
+.card-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.card-icon{width:36px;height:36px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.card-title{font-size:0.95rem;font-weight:600}
+.card-subtitle{font-size:0.75rem;color:var(--text2)}
+
+/* Flight Cards */
+.flight-card{border-left:3px solid var(--accent)}
+.flight-route{display:flex;align-items:center;justify-content:space-between;margin:12px 0}
+.flight-airport{text-align:center}
+.flight-airport .code{font-size:1.4rem;font-weight:700}
+.flight-airport .name{font-size:0.7rem;color:var(--text2);max-width:90px}
+.flight-airport .time{font-size:1.1rem;font-weight:600;color:var(--accent);margin-top:2px}
+.flight-line{flex:1;display:flex;align-items:center;justify-content:center;padding:0 12px;position:relative}
+.flight-line::before{content:'';position:absolute;width:100%;height:1px;background:var(--surface3)}
+.flight-line .plane{position:relative;font-size:1.2rem;z-index:1;background:var(--surface);padding:0 6px}
+.flight-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.flight-tag{background:var(--surface2);padding:4px 10px;border-radius:6px;font-size:0.72rem;color:var(--text2)}
+.flight-tag strong{color:var(--text);font-weight:600}
+
+/* Key Info Grid */
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.info-item{background:var(--surface2);border-radius:var(--radius-sm);padding:12px}
+.info-item .label{font-size:0.68rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px}
+.info-item .value{font-size:0.92rem;font-weight:600;margin-top:2px}
+.info-item.full{grid-column:1/-1}
+
+/* Countdown */
+.countdown{text-align:center;padding:20px;background:linear-gradient(135deg,var(--surface),var(--surface2));border-radius:var(--radius);margin-bottom:12px}
+.countdown .days{font-size:3.5rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+.countdown .days-label{font-size:0.85rem;color:var(--text2);margin-top:4px}
+
+/* Section Ring */
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.section-title{font-size:1.05rem;font-weight:700}
+.ring-counter{position:relative;width:40px;height:40px}
+.ring-counter svg{transform:rotate(-90deg)}
+.ring-counter circle{fill:none;stroke-width:3}
+.ring-counter .ring-bg{stroke:var(--surface3)}
+.ring-counter .ring-fill{stroke:var(--accent);stroke-linecap:round;transition:stroke-dashoffset 0.5s ease,stroke 0.3s}
+.ring-counter .ring-fill.complete{stroke:var(--green)}
+.ring-counter .ring-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700}
+
+/* Checklist */
+.checklist-group{margin-bottom:16px}
+.checklist-group-title{font-size:0.75rem;color:var(--text3);text-transform:uppercase;letter-spacing:1px;padding:6px 0;border-bottom:1px solid var(--surface3);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.checklist-item{display:flex;align-items:center;gap:12px;padding:10px 12px;background:var(--surface);border-radius:var(--radius-sm);margin-bottom:4px;cursor:pointer;transition:all 0.2s;-webkit-user-select:none;user-select:none}
+.checklist-item:active{transform:scale(0.98)}
+.checklist-item.checked{opacity:0.5}
+.checklist-item.checked .item-text{text-decoration:line-through}
+.check-circle{width:24px;height:24px;border-radius:50%;border:2px solid var(--surface3);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.2s}
+.checklist-item.checked .check-circle{background:var(--green);border-color:var(--green)}
+.check-circle::after{content:'✓';font-size:0.7rem;color:transparent;font-weight:700;transition:color 0.2s}
+.checklist-item.checked .check-circle::after{color:#fff}
+.item-text{font-size:0.88rem;flex:1}
+.item-note{font-size:0.7rem;color:var(--text3)}
+.item-priority{font-size:0.65rem;padding:2px 8px;border-radius:4px;font-weight:600}
+.priority-high{background:rgba(239,68,68,0.15);color:var(--red)}
+.priority-med{background:rgba(240,165,0,0.15);color:var(--accent)}
+
+/* Person Selector */
+.person-selector{display:flex;gap:6px;margin-bottom:14px;overflow-x:auto;padding-bottom:4px}
+.person-btn{flex-shrink:0;padding:8px 14px;border-radius:20px;border:2px solid var(--surface3);background:transparent;color:var(--text2);font-size:0.82rem;font-weight:600;cursor:pointer;transition:all 0.2s}
+.person-btn.active{border-color:var(--accent);color:var(--accent);background:rgba(240,165,0,0.1)}
+.person-btn .person-progress{font-size:0.65rem;opacity:0.7;margin-left:4px}
+
+/* Packing Categories */
+.packing-category{margin-bottom:6px}
+.packing-cat-header{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--surface);border-radius:var(--radius-sm);cursor:pointer;margin-bottom:2px}
+.packing-cat-header .cat-name{font-size:0.85rem;font-weight:600;display:flex;align-items:center;gap:8px}
+.packing-cat-header .cat-count{font-size:0.72rem;color:var(--text3)}
+.packing-cat-items{padding-left:0;overflow:hidden;transition:max-height 0.3s ease}
+.packing-cat-items.collapsed{max-height:0!important}
+
+/* Timeline */
+.timeline{position:relative;padding-left:24px}
+.timeline::before{content:'';position:absolute;left:8px;top:8px;bottom:8px;width:2px;background:var(--surface3)}
+.timeline-item{position:relative;margin-bottom:16px}
+.timeline-item::before{content:'';position:absolute;left:-18px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+.timeline-item .tl-time{font-size:0.75rem;color:var(--accent);font-weight:600}
+.timeline-item .tl-event{font-size:0.88rem;margin-top:2px}
+.timeline-item .tl-note{font-size:0.75rem;color:var(--text3);margin-top:1px}
+
+/* EasyJet ref callout */
+.ref-callout{background:linear-gradient(135deg,rgba(240,165,0,0.1),rgba(255,107,53,0.1));border:1px solid rgba(240,165,0,0.2);border-radius:var(--radius);padding:14px;text-align:center;margin-bottom:12px}
+.ref-callout .ref-label{font-size:0.7rem;color:var(--text2);text-transform:uppercase;letter-spacing:1px}
+.ref-callout .ref-value{font-size:1.3rem;font-weight:800;letter-spacing:2px;color:var(--accent);margin-top:4px;font-family:'Courier New',monospace}
+.ref-callout .ref-sub{font-size:0.7rem;color:var(--text3);margin-top:4px}
+
+/* Quick Links */
+.quick-links{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.quick-link{display:flex;align-items:center;gap:8px;background:var(--surface);border-radius:var(--radius-sm);padding:12px;text-decoration:none;color:var(--text);transition:background 0.2s}
+.quick-link:active{background:var(--surface2)}
+.quick-link .ql-icon{font-size:1.2rem}
+.quick-link .ql-text{font-size:0.78rem;font-weight:500}
+
+/* Animations */
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.tab-content.active{animation:fadeIn 0.25s ease}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Turkey 2026 🇹🇷</h1>
+  <div class="subtitle">Liberty Hotels Lykia · Sarigerme · 9–20 Apr</div>
+</div>
+
+<!-- Global Progress -->
+<div class="global-progress">
+  <div class="label"><span>Holiday Readiness</span><span id="globalPct">0%</span></div>
+  <div class="progress-bar"><div class="fill" id="globalFill" style="width:0%"></div></div>
+</div>
+
+<!-- Tabs -->
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="overview">Overview</button>
+  <button class="tab-btn" data-tab="flights">Flights</button>
+  <button class="tab-btn" data-tab="todo">To-Do</button>
+  <button class="tab-btn" data-tab="packing">Packing</button>
+</div>
+
+<!-- ========== OVERVIEW ========== -->
+<div class="tab-content active" id="tab-overview">
+  <div class="countdown">
+    <div class="days" id="countdown-days">6</div>
+    <div class="days-label" id="countdown-label">days to go</div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(240,165,0,0.15)">🏨</div>
+      <div>
+        <div class="card-title">Liberty Hotels Lykia</div>
+        <div class="card-subtitle">5★ · All Inclusive · 11 nights</div>
+      </div>
+    </div>
+    <div class="info-grid">
+      <div class="info-item"><div class="label">Check-in</div><div class="value">Wed 9 Apr</div></div>
+      <div class="info-item"><div class="label">Check-out</div><div class="value">Mon 20 Apr</div></div>
+      <div class="info-item"><div class="label">Room</div><div class="value">Larger Deluxe Double</div></div>
+      <div class="info-item"><div class="label">Board</div><div class="value">All Inclusive</div></div>
+      <div class="info-item full"><div class="label">Address</div><div class="value">Kidrak Mevkii, Sarigerme, Ortaca, Turkey 48300</div></div>
+      <div class="info-item"><div class="label">Transfer</div><div class="value">Coach (included)</div></div>
+      <div class="info-item"><div class="label">Luggage</div><div class="value">23kg each</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(59,130,246,0.15)">📋</div>
+      <div>
+        <div class="card-title">Key References</div>
+        <div class="card-subtitle">Save these — you'll need them</div>
+      </div>
+    </div>
+    <div class="info-grid">
+      <div class="info-item"><div class="label">TUI Booking Ref</div><div class="value">31907216</div></div>
+      <div class="info-item"><div class="label">EasyJet Ref</div><div class="value">KCDZFF9</div></div>
+      <div class="info-item full"><div class="label">TUI Support</div><div class="value">0203 451 2688</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(34,197,94,0.15)">🔗</div>
+      <div>
+        <div class="card-title">Quick Links</div>
+      </div>
+    </div>
+    <div class="quick-links">
+      <a class="quick-link" href="https://www.easyjet.com" target="_blank"><span class="ql-icon">✈️</span><span class="ql-text">EasyJet Check-in</span></a>
+      <a class="quick-link" href="https://www.tui.co.uk/manage-my-booking" target="_blank"><span class="ql-icon">📦</span><span class="ql-text">Manage TUI Booking</span></a>
+      <a class="quick-link" href="https://www.gov.uk/foreign-travel-advice/turkey" target="_blank"><span class="ql-icon">🌍</span><span class="ql-text">FCDO Turkey</span></a>
+      <a class="quick-link" href="https://www.libertyhotels.com.tr/en/liberty-hotels-lykia" target="_blank"><span class="ql-icon">🏨</span><span class="ql-text">Hotel Website</span></a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(168,85,247,0.15)">⏰</div>
+      <div>
+        <div class="card-title">Departure Day — Wed 9 Apr</div>
+        <div class="card-subtitle">LGW North Terminal → Dalaman</div>
+      </div>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="tl-time">TBC</div>
+        <div class="tl-event">Leave home</div>
+        <div class="tl-note">Dog to Sophie before this</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-time">TBC</div>
+        <div class="tl-event">Arrive at Gatwick North Terminal</div>
+        <div class="tl-note">Aim for ~2.5hrs before departure</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-time">15:20</div>
+        <div class="tl-event">Flight EZY8565 departs</div>
+        <div class="tl-note">Gatwick (LGW) → Dalaman (DLM)</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-time">21:30 (local)</div>
+        <div class="tl-event">Arrive Dalaman</div>
+        <div class="tl-note">Turkey is UTC+3 (2hrs ahead of UK)</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-time">~22:00</div>
+        <div class="tl-event">Coach transfer to hotel</div>
+        <div class="tl-note">Look for TUI reps at airport</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(59,130,246,0.15)">ℹ️</div>
+      <div>
+        <div class="card-title">Need to Know</div>
+      </div>
+    </div>
+    <div class="info-grid">
+      <div class="info-item"><div class="label">Visa</div><div class="value">Not needed (under 90 days)</div></div>
+      <div class="info-item"><div class="label">Passport</div><div class="value">150 days validity req'd</div></div>
+      <div class="info-item"><div class="label">Emergency</div><div class="value">Dial 112</div></div>
+      <div class="info-item"><div class="label">Currency</div><div class="value">Turkish Lira (TRY)</div></div>
+      <div class="info-item full"><div class="label">EasyJet Check-in</div><div class="value">Opens 30 days before (10 Mar) — closes 2hrs before flight. Must check in online.</div></div>
+      <div class="info-item full"><div class="label">Cabin Bag</div><div class="value">1 small bag per person (43×28×23cm, max 5kg) — must fit under seat</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== FLIGHTS ========== -->
+<div class="tab-content" id="tab-flights">
+  <div class="ref-callout">
+    <div class="ref-label">EasyJet Booking Reference</div>
+    <div class="ref-value">KCDZFF9</div>
+    <div class="ref-sub">Use this for online check-in at easyjet.com</div>
+  </div>
+
+  <!-- Outbound -->
+  <div class="card flight-card">
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(240,165,0,0.15)">🛫</div>
+      <div>
+        <div class="card-title">Outbound — Wed 9 Apr</div>
+        <div class="card-subtitle">EasyJet · EZY8565</div>
+      </div>
+    </div>
+    <div class="flight-route">
+      <div class="flight-airport">
+        <div class="code">LGW</div>
+        <div class="name">London Gatwick<br>North Terminal</div>
+        <div class="time">15:20</div>
+      </div>
+      <div class="flight-line"><span class="plane">✈️</span></div>
+      <div class="flight-airport">
+        <div class="code">DLM</div>
+        <div class="name">Dalaman<br>Turkey</div>
+        <div class="time">21:30</div>
+      </div>
+    </div>
+    <div class="flight-meta">
+      <div class="flight-tag"><strong>Duration:</strong> ~4h 10m</div>
+      <div class="flight-tag"><strong>Class:</strong> Economy</div>
+      <div class="flight-tag"><strong>Hold:</strong> 23kg each</div>
+      <div class="flight-tag"><strong>Cabin:</strong> 1 small bag</div>
+    </div>
+    <div style="margin-top:12px">
+      <div style="font-size:0.75rem;color:var(--text3);margin-bottom:4px">Passengers</div>
+      <div style="font-size:0.82rem;color:var(--text2)">Mr Matthew Clegg · Mrs Michelle Clegg · Master Fintan Clegg · Master Jonathan Clegg</div>
+    </div>
+  </div>
+
+  <!-- Return -->
+  <div class="card flight-card" style="border-left-color:var(--blue)">
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(59,130,246,0.15)">🛬</div>
+      <div>
+        <div class="card-title">Return — Mon 20 Apr</div>
+        <div class="card-subtitle">EasyJet · EZY8564</div>
+      </div>
+    </div>
+    <div class="flight-route">
+      <div class="flight-airport">
+        <div class="code">DLM</div>
+        <div class="name">Dalaman<br>Turkey</div>
+        <div class="time">14:40</div>
+      </div>
+      <div class="flight-line"><span class="plane">✈️</span></div>
+      <div class="flight-airport">
+        <div class="code">LGW</div>
+        <div class="name">London Gatwick<br>North Terminal</div>
+        <div class="time">17:10</div>
+      </div>
+    </div>
+    <div class="flight-meta">
+      <div class="flight-tag"><strong>Duration:</strong> ~4h 30m</div>
+      <div class="flight-tag"><strong>Class:</strong> Economy</div>
+      <div class="flight-tag"><strong>Hold:</strong> 23kg each</div>
+      <div class="flight-tag"><strong>Cabin:</strong> 1 small bag</div>
+    </div>
+    <div style="margin-top:12px">
+      <div style="font-size:0.75rem;color:var(--text3);margin-bottom:4px">Passengers</div>
+      <div style="font-size:0.82rem;color:var(--text2)">Mr Matthew Clegg · Mrs Michelle Clegg · Master Fintan Clegg · Master Jonathan Clegg</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(34,197,94,0.15)">📱</div>
+      <div>
+        <div class="card-title">Check-in Info</div>
+        <div class="card-subtitle">EasyJet — online only</div>
+      </div>
+    </div>
+    <div style="font-size:0.85rem;color:var(--text2);line-height:1.5">
+      <p style="margin-bottom:8px">EasyJet <strong style="color:var(--text)">does not offer airport check-in</strong> — you must check in online or via the app.</p>
+      <p style="margin-bottom:8px">Check-in opens <strong style="color:var(--accent)">30 days before departure</strong> and closes 2 hours prior.</p>
+      <p style="margin-bottom:8px">Go to <a href="https://www.easyjet.com" target="_blank">easyjet.com</a> → Check-In → Find Booking → enter ref <strong style="color:var(--accent)">KCDZFF9</strong></p>
+      <p>You'll need to enter <strong style="color:var(--text)">Advanced Passenger Information</strong> (passport details) then download/print boarding passes.</p>
+    </div>
+  </div>
+
+  <!-- Boarding Pass placeholder -->
+  <div class="card" style="border:1px dashed var(--surface3);text-align:center;padding:24px">
+    <div style="font-size:1.5rem;margin-bottom:8px">🎫</div>
+    <div style="font-size:0.85rem;color:var(--text2)">Boarding passes will appear here once check-in is complete</div>
+    <div style="font-size:0.72rem;color:var(--text3);margin-top:4px">Drop the screenshots in and we'll embed them</div>
+  </div>
+</div>
+
+<!-- ========== TO-DO ========== -->
+<div class="tab-content" id="tab-todo">
+  <div class="section-header">
+    <div class="section-title">Before We Go</div>
+    <div class="ring-counter" id="todo-ring">
+      <svg viewBox="0 0 36 36"><circle class="ring-bg" cx="18" cy="18" r="16"/><circle class="ring-fill" cx="18" cy="18" r="16" stroke-dasharray="100.53" stroke-dashoffset="100.53"/></svg>
+      <div class="ring-text" id="todo-ring-text">0%</div>
+    </div>
+  </div>
+  <div id="todo-list">
+    <!-- Populated by JS -->
+  </div>
+</div>
+
+<!-- ========== PACKING ========== -->
+<div class="tab-content" id="tab-packing">
+  <div class="section-header">
+    <div class="section-title">Packing Lists</div>
+    <div class="ring-counter" id="packing-ring">
+      <svg viewBox="0 0 36 36"><circle class="ring-bg" cx="18" cy="18" r="16"/><circle class="ring-fill" cx="18" cy="18" r="16" stroke-dasharray="100.53" stroke-dashoffset="100.53"/></svg>
+      <div class="ring-text" id="packing-ring-text">0%</div>
+    </div>
+  </div>
+  <div class="person-selector" id="person-selector">
+    <!-- Populated by JS -->
+  </div>
+  <div id="packing-list">
+    <!-- Populated by JS -->
+  </div>
+</div>
+
+<script>
+// ============================================================
+// DATA
+// ============================================================
+const TRIP_DATE = new Date('2026-04-09T00:00:00');
+
+const TODO_ITEMS = [
+  { id: 't1', text: 'Check passports are valid (150+ days)', note: 'All 4 passports', group: 'Documents', priority: 'high' },
+  { id: 't2', text: 'EasyJet online check-in', note: 'Opens 10 Mar — ref KCDZFF9', group: 'Documents', priority: 'high' },
+  { id: 't3', text: 'Download/print boarding passes', note: 'All 4 passengers', group: 'Documents', priority: 'high' },
+  { id: 't4', text: 'Submit Advanced Passenger Info (API)', note: 'Passport details on easyjet.com', group: 'Documents', priority: 'high' },
+  { id: 't5', text: 'Arrange travel insurance', note: 'Condition of TUI booking', group: 'Documents', priority: 'high' },
+  { id: 't6', text: 'Download TUI app', note: 'For transfer bus number & gate info', group: 'Apps & Tech' },
+  { id: 't7', text: 'Download EasyJet app', note: 'Live flight updates', group: 'Apps & Tech' },
+  { id: 't8', text: 'Take dog to Sophie', note: 'Before departure day', group: 'Home', priority: 'high' },
+  { id: 't9', text: 'Turn off heating', note: 'Day of departure', group: 'Home' },
+  { id: 't10', text: 'Lock all windows & doors', note: '', group: 'Home' },
+  { id: 't11', text: 'Bins out (if collection day)', note: '', group: 'Home' },
+  { id: 't12', text: 'Set light timers / smart plugs', note: '', group: 'Home' },
+  { id: 't13', text: 'Matt — arrange return flight', note: 'Via work, same flights', group: 'Flights', priority: 'high' },
+  { id: 't14', text: 'Select EasyJet seats (optional)', note: 'Extra fee — or free allocation at check-in', group: 'Flights' },
+  { id: 't15', text: 'Charge devices & power banks', note: 'Night before', group: 'Day Before' },
+  { id: 't16', text: 'Pack hand luggage last bits', note: 'Snacks, entertainment for kids', group: 'Day Before' },
+  { id: 't17', text: 'Check FCDO Turkey advice', note: 'gov.uk/foreign-travel-advice/turkey', group: 'Admin' },
+  { id: 't18', text: 'Notify bank of travel dates', note: 'Avoid card blocks abroad', group: 'Admin' },
+  { id: 't19', text: 'Get Turkish Lira or travel card', note: 'All Inclusive but handy for extras', group: 'Admin' },
+];
+
+const PACKING_DATA = {
+  Matt: {
+    'Clothes': [
+      'Shorts ×4', 'T-shirts ×5', 'Swim shorts ×2', 'Underwear ×7', 'Socks ×4',
+      'Lightweight trousers ×1', 'Smart casual outfit (evening)', 'Flip flops',
+      'Trainers', 'Cap / hat', 'Sunglasses', 'Hoodie / light jacket (flight)'
+    ],
+    'Toiletries': [
+      'Sun cream (high SPF)', 'Aftershave / deodorant', 'Toothbrush & toothpaste',
+      'Razor', 'Shampoo', 'Paracetamol / ibuprofen'
+    ],
+    'Tech': [
+      'Phone charger', 'Power bank', 'Headphones', 'Kindle / book',
+      'Travel adapter (Type F)'
+    ],
+    'Documents': [
+      'Passport', 'Boarding passes', 'Travel insurance docs',
+      'Hotel confirmation', 'Driving licence (ID backup)'
+    ],
+    'Misc': [
+      'Wallet / cards', 'Day bag / rucksack', 'Water bottle (empty for airport)',
+      'Snacks for flight'
+    ]
+  },
+  Michelle: {
+    'Clothes': [
+      'Dresses / outfits ×4', 'Tops ×4', 'Shorts / skirts ×3', 'Swimwear ×2',
+      'Underwear ×7', 'Cover-up / sarong', 'Sandals', 'Flip flops',
+      'Evening shoes', 'Sunglasses', 'Hat', 'Light cardigan (flight)'
+    ],
+    'Toiletries': [
+      'Sun cream (high SPF)', 'Make-up essentials', 'Toothbrush & toothpaste',
+      'Shampoo & conditioner', 'Deodorant', 'Hairbrush / straighteners',
+      'Moisturiser', 'Any medications'
+    ],
+    'Tech': [
+      'Phone charger', 'Power bank', 'Headphones', 'Kindle / book',
+      'Travel adapter (Type F)'
+    ],
+    'Documents': [
+      'Passport', 'Boarding passes', 'Travel insurance docs'
+    ],
+    'Misc': [
+      'Handbag / day bag', 'Purse / cards', 'Water bottle',
+      'Kids\' snacks for flight', 'Wet wipes'
+    ]
+  },
+  JJ: {
+    'Clothes': [
+      'Shorts ×4', 'T-shirts ×5', 'Swim shorts ×2', 'Underwear ×7',
+      'Socks ×3', 'Flip flops', 'Trainers', 'Cap / hat',
+      'Sunglasses', 'Hoodie (flight)'
+    ],
+    'Toiletries': [
+      'Sun cream', 'Toothbrush & toothpaste', 'Deodorant', 'Hair gel / wax'
+    ],
+    'Tech & Entertainment': [
+      'Phone charger', 'Headphones', 'Book / Kindle',
+      'Downloaded films/games for flight'
+    ],
+    'Documents': [
+      'Passport'
+    ],
+    'Misc': [
+      'Day bag / rucksack', 'Water bottle', 'Snacks for flight', 'Spending money'
+    ]
+  },
+  Fintan: {
+    'Clothes': [
+      'Shorts ×4', 'T-shirts ×5', 'Swim shorts ×2', 'Underwear ×7',
+      'Socks ×3', 'Flip flops', 'Trainers', 'Cap / hat',
+      'Sunglasses', 'Hoodie (flight)'
+    ],
+    'Toiletries': [
+      'Sun cream', 'Toothbrush & toothpaste'
+    ],
+    'Tech & Entertainment': [
+      'Tablet / device + charger', 'Headphones',
+      'Downloaded films/games for flight', 'Card games / travel games'
+    ],
+    'Documents': [
+      'Passport'
+    ],
+    'Misc': [
+      'Day bag / rucksack', 'Water bottle', 'Snacks for flight',
+      'Cuddly toy / comfort item', 'Spending money'
+    ]
+  }
+};
+
+// ============================================================
+// STATE
+// ============================================================
+const STORAGE_KEY = 'turkey2026';
+let state = loadState();
+let activePerson = state.lastPerson || 'Matt';
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch(e) {}
+  return { checked: {}, lastPerson: 'Matt' };
+}
+function saveState() {
+  state.lastPerson = activePerson;
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
+}
+function isChecked(id) { return !!state.checked[id]; }
+function toggle(id) {
+  state.checked[id] = !state.checked[id];
+  if (!state.checked[id]) delete state.checked[id];
+  saveState();
+}
+
+// ============================================================
+// COUNTDOWN
+// ============================================================
+function updateCountdown() {
+  const now = new Date();
+  const diff = TRIP_DATE - now;
+  const days = Math.max(0, Math.ceil(diff / (1000*60*60*24)));
+  document.getElementById('countdown-days').textContent = days;
+  document.getElementById('countdown-label').textContent = days === 1 ? 'day to go' : days === 0 ? "IT'S TODAY! 🎉" : 'days to go';
+}
+
+// ============================================================
+// TABS
+// ============================================================
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ============================================================
+// TO-DO LIST
+// ============================================================
+function renderTodo() {
+  const container = document.getElementById('todo-list');
+  const groups = {};
+  TODO_ITEMS.forEach(item => {
+    if (!groups[item.group]) groups[item.group] = [];
+    groups[item.group].push(item);
+  });
+
+  let html = '';
+  for (const [group, items] of Object.entries(groups)) {
+    const groupChecked = items.filter(i => isChecked(i.id)).length;
+    html += `<div class="checklist-group">
+      <div class="checklist-group-title"><span>${group}</span><span style="margin-left:auto;font-size:0.7rem;color:var(--text3)">${groupChecked}/${items.length}</span></div>`;
+    items.forEach(item => {
+      const checked = isChecked(item.id);
+      const priorityHtml = item.priority === 'high' ? '<span class="item-priority priority-high">Must do</span>' :
+                           item.priority === 'med' ? '<span class="item-priority priority-med">Should do</span>' : '';
+      html += `<div class="checklist-item${checked ? ' checked' : ''}" data-id="${item.id}" onclick="toggleTodo('${item.id}')">
+        <div class="check-circle"></div>
+        <div style="flex:1"><div class="item-text">${item.text}</div>${item.note ? `<div class="item-note">${item.note}</div>` : ''}</div>
+        ${priorityHtml}
+      </div>`;
+    });
+    html += '</div>';
+  }
+  container.innerHTML = html;
+  updateTodoRing();
+}
+
+function toggleTodo(id) {
+  toggle(id);
+  renderTodo();
+  updateGlobalProgress();
+}
+
+function updateTodoRing() {
+  const total = TODO_ITEMS.length;
+  const done = TODO_ITEMS.filter(i => isChecked(i.id)).length;
+  const pct = total ? Math.round((done/total)*100) : 0;
+  const circ = 2 * Math.PI * 16;
+  const offset = circ * (1 - pct/100);
+  const ring = document.querySelector('#todo-ring .ring-fill');
+  ring.style.strokeDashoffset = offset;
+  ring.classList.toggle('complete', pct === 100);
+  document.getElementById('todo-ring-text').textContent = pct + '%';
+}
+
+// ============================================================
+// PACKING LISTS
+// ============================================================
+function renderPersonSelector() {
+  const container = document.getElementById('person-selector');
+  let html = '';
+  Object.keys(PACKING_DATA).forEach(person => {
+    const items = getAllPackingItems(person);
+    const done = items.filter(i => isChecked(i.id)).length;
+    const pct = items.length ? Math.round((done/items.length)*100) : 0;
+    html += `<button class="person-btn${person === activePerson ? ' active' : ''}" onclick="selectPerson('${person}')">${person}<span class="person-progress">${pct}%</span></button>`;
+  });
+  container.innerHTML = html;
+}
+
+function getAllPackingItems(person) {
+  const items = [];
+  const data = PACKING_DATA[person];
+  if (!data) return items;
+  for (const [cat, list] of Object.entries(data)) {
+    list.forEach((item, idx) => {
+      items.push({ id: `p_${person}_${cat}_${idx}`, text: item, category: cat });
+    });
+  }
+  return items;
+}
+
+function selectPerson(person) {
+  activePerson = person;
+  saveState();
+  renderPacking();
+}
+
+function renderPacking() {
+  renderPersonSelector();
+  const container = document.getElementById('packing-list');
+  const data = PACKING_DATA[activePerson];
+  if (!data) { container.innerHTML = ''; return; }
+
+  let html = '';
+  for (const [cat, items] of Object.entries(data)) {
+    const catItems = items.map((item, idx) => ({
+      id: `p_${activePerson}_${cat}_${idx}`, text: item
+    }));
+    const catDone = catItems.filter(i => isChecked(i.id)).length;
+    const allDone = catDone === catItems.length;
+
+    html += `<div class="packing-category">
+      <div class="packing-cat-header" onclick="toggleCat(this)">
+        <span class="cat-name"><span>${getCatIcon(cat)}</span>${cat}</span>
+        <span class="cat-count" style="color:${allDone ? 'var(--green)' : 'var(--text3)'}">${catDone}/${catItems.length}${allDone ? ' ✓' : ''}</span>
+      </div>
+      <div class="packing-cat-items">`;
+    catItems.forEach(item => {
+      const checked = isChecked(item.id);
+      html += `<div class="checklist-item${checked ? ' checked' : ''}" onclick="togglePacking('${item.id}')">
+        <div class="check-circle"></div>
+        <div class="item-text">${item.text}</div>
+      </div>`;
+    });
+    html += '</div></div>';
+  }
+  container.innerHTML = html;
+  updatePackingRing();
+}
+
+function getCatIcon(cat) {
+  const icons = { 'Clothes':'👕', 'Toiletries':'🧴', 'Tech':'📱', 'Tech & Entertainment':'📱', 'Documents':'📄', 'Misc':'🎒' };
+  return icons[cat] || '📦';
+}
+
+function toggleCat(el) {
+  const items = el.nextElementSibling;
+  items.classList.toggle('collapsed');
+}
+
+function togglePacking(id) {
+  toggle(id);
+  renderPacking();
+  updateGlobalProgress();
+}
+
+function updatePackingRing() {
+  let total = 0, done = 0;
+  const items = getAllPackingItems(activePerson);
+  total = items.length;
+  done = items.filter(i => isChecked(i.id)).length;
+  const pct = total ? Math.round((done/total)*100) : 0;
+  const circ = 2 * Math.PI * 16;
+  const offset = circ * (1 - pct/100);
+  const ring = document.querySelector('#packing-ring .ring-fill');
+  ring.style.strokeDashoffset = offset;
+  ring.classList.toggle('complete', pct === 100);
+  document.getElementById('packing-ring-text').textContent = pct + '%';
+}
+
+// ============================================================
+// GLOBAL PROGRESS
+// ============================================================
+function updateGlobalProgress() {
+  // Count all todos
+  const todoTotal = TODO_ITEMS.length;
+  const todoDone = TODO_ITEMS.filter(i => isChecked(i.id)).length;
+
+  // Count all packing items across all people
+  let packTotal = 0, packDone = 0;
+  Object.keys(PACKING_DATA).forEach(person => {
+    const items = getAllPackingItems(person);
+    packTotal += items.length;
+    packDone += items.filter(i => isChecked(i.id)).length;
+  });
+
+  const total = todoTotal + packTotal;
+  const done = todoDone + packDone;
+  const pct = total ? Math.round((done/total)*100) : 0;
+
+  document.getElementById('globalPct').textContent = pct + '%';
+  const fill = document.getElementById('globalFill');
+  fill.style.width = pct + '%';
+  fill.classList.toggle('complete', pct === 100);
+
+  // Update tab badges
+  updateTabBadge('todo', todoTotal - todoDone);
+  updateTabBadge('packing', packTotal - packDone);
+}
+
+function updateTabBadge(tab, remaining) {
+  const btn = document.querySelector(`.tab-btn[data-tab="${tab}"]`);
+  let badge = btn.querySelector('.badge');
+  if (remaining > 0) {
+    if (!badge) {
+      badge = document.createElement('span');
+      badge.className = 'badge';
+      btn.appendChild(badge);
+    }
+    badge.textContent = remaining;
+  } else if (badge) {
+    badge.remove();
+  }
+}
+
+// ============================================================
+// INIT
+// ============================================================
+function init() {
+  updateCountdown();
+  renderTodo();
+  renderPacking();
+  updateGlobalProgress();
+  setInterval(updateCountdown, 60000);
+}
+init();
+</script>
+</body>
+</html>
