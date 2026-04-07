@@ -166,6 +166,7 @@ a{color:var(--accent)}
 
 <!-- ========== OVERVIEW ========== -->
 <div class="tab-content active" id="tab-overview">
+
   <div class="countdown">
     <div class="days" id="countdown-days">6</div>
     <div class="days-label" id="countdown-label">days to go</div>
@@ -230,19 +231,19 @@ a{color:var(--accent)}
     </div>
     <div class="timeline">
       <div class="timeline-item">
-        <div class="tl-time">Early AM</div>
-        <div class="tl-event">Leave home</div>
+        <div class="tl-time">05:50</div>
+        <div class="tl-event">Taxi pickup</div>
         <div class="tl-note">Dog to Sophie before this</div>
       </div>
       <div class="timeline-item">
-        <div class="tl-time">~07:30</div>
+        <div class="tl-time">07:05</div>
         <div class="tl-event">EasyJet Jersey → Gatwick</div>
         <div class="tl-note">Jersey Airport (JER) → London Gatwick (LGW)</div>
       </div>
       <div class="timeline-item">
-        <div class="tl-time">~09:00</div>
+        <div class="tl-time">~08:00</div>
         <div class="tl-event">Arrive Gatwick</div>
-        <div class="tl-note">Landside wait — ~6hrs until Turkey flight</div>
+        <div class="tl-note">Landside wait — ~7hrs until Turkey flight</div>
       </div>
       <div class="timeline-item">
         <div class="tl-time">15:20</div>
@@ -310,10 +311,12 @@ a{color:var(--accent)}
       <div class="info-item full"><div class="label">Cabin Bag</div><div class="value">1 small bag per person (43×28×23cm, max 5kg) — must fit under seat</div></div>
     </div>
   </div>
+
 </div>
 
 <!-- ========== FLIGHTS ========== -->
 <div class="tab-content" id="tab-flights">
+
   <div class="ref-callout">
     <div class="ref-label">EasyJet Booking Reference</div>
     <div class="ref-value">KCDZFF9</div>
@@ -333,13 +336,13 @@ a{color:var(--accent)}
       <div class="flight-airport">
         <div class="code">JER</div>
         <div class="name">Jersey<br>Airport</div>
-        <div class="time">~07:30</div>
+        <div class="time">07:05</div>
       </div>
       <div class="flight-line"><span class="plane">✈️</span></div>
       <div class="flight-airport">
         <div class="code">LGW</div>
         <div class="name">London Gatwick</div>
-        <div class="time">~09:00</div>
+        <div class="time">~08:00</div>
       </div>
     </div>
     <div class="flight-meta">
@@ -480,6 +483,7 @@ a{color:var(--accent)}
     <div style="font-size:0.85rem;color:var(--text2)">Boarding passes will appear here once check-in is complete</div>
     <div style="font-size:0.72rem;color:var(--text3);margin-top:4px">Drop the screenshots in and we'll embed them</div>
   </div>
+
 </div>
 
 <!-- ========== TO-DO ========== -->
@@ -541,6 +545,8 @@ const TODO_ITEMS = [
   { id: 't17', text: 'Check FCDO Turkey advice', note: 'gov.uk/foreign-travel-advice/turkey', group: 'Admin' },
   { id: 't18', text: 'Notify bank of travel dates', note: 'Avoid card blocks abroad', group: 'Admin' },
   { id: 't19', text: 'Get Turkish Lira or travel card', note: 'All Inclusive but handy for extras', group: 'Admin' },
+  { id: 't22', text: 'Download films/games to boys\' devices', note: 'Before departure', group: 'Day Before', priority: 'high' },
+  { id: 't23', text: 'Boys to get their own headphones', note: '', group: 'Admin', priority: 'med' },
 ];
 
 const PACKING_DATA = {
@@ -551,84 +557,57 @@ const PACKING_DATA = {
       'Trainers', 'Cap / hat', 'Sunglasses', 'Hoodie / light jacket (flight)'
     ],
     'Toiletries': [
-      'Sun cream (high SPF)', 'Aftershave / deodorant', 'Toothbrush & toothpaste',
+      'Aftershave / deodorant', 'Toothbrush & toothpaste',
       'Razor', 'Shampoo', 'Paracetamol / ibuprofen'
     ],
     'Tech': [
-      'Phone charger', 'Power bank', 'Headphones', 'Kindle / book',
-      'Travel adapter (Type F)'
+      'Phone charger', 'Power bank', 'Headphones', 'Kindle / book', 'Travel adapter (Type F)'
     ],
     'Documents': [
-      'Passport', 'Boarding passes', 'Travel insurance docs',
-      'Hotel confirmation', 'Driving licence (ID backup)'
+      'Passport', 'Boarding passes', 'Travel insurance docs', 'Hotel confirmation', 'Driving licence (ID backup)'
     ],
     'Misc': [
-      'Wallet / cards', 'Day bag / rucksack', 'Water bottle (empty for airport)',
-      'Snacks for flight'
+      'Wallet / cards', 'Day bag / rucksack', 'Water bottle (empty for airport)'
     ]
   },
   Michelle: {
     'Clothes': [
-      'Dresses / outfits ×4', 'Tops ×4', 'Shorts / skirts ×3', 'Swimwear ×2',
-      'Underwear ×7', 'Cover-up / sarong', 'Sandals', 'Flip flops',
-      'Evening shoes', 'Sunglasses', 'Hat', 'Light cardigan (flight)'
+      'Dresses / outfits ×4', 'Tops ×4', 'Shorts / skirts ×3', 'Swimwear ×2', 'Underwear ×7',
+      'Cover-up / sarong', 'Sandals', 'Flip flops', 'Evening shoes', 'Sunglasses', 'Hat',
+      'Light cardigan (flight)'
     ],
     'Toiletries': [
-      'Sun cream (high SPF)', 'Make-up essentials', 'Toothbrush & toothpaste',
-      'Shampoo & conditioner', 'Deodorant', 'Hairbrush / straighteners',
-      'Moisturiser', 'Any medications'
-    ],
-    'Tech': [
-      'Phone charger', 'Power bank', 'Headphones', 'Kindle / book',
-      'Travel adapter (Type F)'
-    ],
-    'Documents': [
-      'Passport', 'Boarding passes', 'Travel insurance docs'
+      'Sun cream (high SPF)', 'Make-up essentials',
+      'Shampoo & conditioner', 'Deodorant', 'Hairbrush / straighteners', 'Moisturiser', 'Any medications'
     ],
     'Misc': [
-      'Handbag / day bag', 'Purse / cards', 'Water bottle',
-      'Kids\' snacks for flight', 'Wet wipes'
+      'Handbag / day bag', 'Purse / cards', 'Water bottle', 'Kids\' snacks for flight', 'Wet wipes'
     ]
   },
   JJ: {
     'Clothes': [
-      'Shorts ×4', 'T-shirts ×5', 'Swim shorts ×2', 'Underwear ×7',
-      'Socks ×3', 'Flip flops', 'Trainers', 'Cap / hat',
-      'Sunglasses', 'Hoodie (flight)'
-    ],
-    'Toiletries': [
-      'Sun cream', 'Toothbrush & toothpaste', 'Deodorant', 'Hair gel / wax'
+      'Shorts ×4', 'T-shirts ×5', 'Swim shorts ×2', 'Underwear ×7', 'Socks ×3',
+      'Flip flops', 'Trainers', 'Cap / hat', 'Sunglasses', 'Hoodie (flight)',
+      'Goggles', 'Rash vest', 'Oodie'
     ],
     'Tech & Entertainment': [
-      'Phone charger', 'Headphones', 'Book / Kindle',
-      'Downloaded films/games for flight'
-    ],
-    'Documents': [
-      'Passport'
+      'Headphones', 'Book / Kindle', 'Downloaded films/games for flight', 'Card games / travel games'
     ],
     'Misc': [
-      'Day bag / rucksack', 'Water bottle', 'Snacks for flight', 'Spending money'
+      'Day bag / rucksack', 'Water bottle'
     ]
   },
   Fintan: {
     'Clothes': [
-      'Shorts ×4', 'T-shirts ×5', 'Swim shorts ×2', 'Underwear ×7',
-      'Socks ×3', 'Flip flops', 'Trainers', 'Cap / hat',
-      'Sunglasses', 'Hoodie (flight)'
-    ],
-    'Toiletries': [
-      'Sun cream', 'Toothbrush & toothpaste'
+      'Shorts ×4', 'T-shirts ×5', 'Swim shorts ×2', 'Underwear ×7', 'Socks ×3',
+      'Flip flops', 'Trainers', 'Cap / hat', 'Hoodie (flight)',
+      'Goggles', 'Rash vest', 'Oodie'
     ],
     'Tech & Entertainment': [
-      'Tablet / device + charger', 'Headphones',
-      'Downloaded films/games for flight', 'Card games / travel games'
-    ],
-    'Documents': [
-      'Passport'
+      'Headphones', 'Downloaded films/games for flight'
     ],
     'Misc': [
-      'Day bag / rucksack', 'Water bottle', 'Snacks for flight',
-      'Cuddly toy / comfort item', 'Spending money'
+      'Day bag / rucksack', 'Water bottle', 'Teddies ×2'
     ]
   }
 };
@@ -647,11 +626,14 @@ function loadState() {
   } catch(e) {}
   return { checked: {}, lastPerson: 'Matt' };
 }
+
 function saveState() {
   state.lastPerson = activePerson;
   try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
 }
+
 function isChecked(id) { return !!state.checked[id]; }
+
 function toggle(id) {
   state.checked[id] = !state.checked[id];
   if (!state.checked[id]) delete state.checked[id];
@@ -666,7 +648,8 @@ function updateCountdown() {
   const diff = TRIP_DATE - now;
   const days = Math.max(0, Math.ceil(diff / (1000*60*60*24)));
   document.getElementById('countdown-days').textContent = days;
-  document.getElementById('countdown-label').textContent = days === 1 ? 'day to go' : days === 0 ? "IT'S TODAY! 🎉" : 'days to go';
+  document.getElementById('countdown-label').textContent =
+    days === 1 ? 'day to go' : days === 0 ? "IT'S TODAY! 🎉" : 'days to go';
 }
 
 // ============================================================
@@ -697,10 +680,14 @@ function renderTodo() {
     const groupChecked = items.filter(i => isChecked(i.id)).length;
     html += `<div class="checklist-group">
       <div class="checklist-group-title"><span>${group}</span><span style="margin-left:auto;font-size:0.7rem;color:var(--text3)">${groupChecked}/${items.length}</span></div>`;
+
     items.forEach(item => {
       const checked = isChecked(item.id);
-      const priorityHtml = item.priority === 'high' ? '<span class="item-priority priority-high">Must do</span>' :
-                           item.priority === 'med' ? '<span class="item-priority priority-med">Should do</span>' : '';
+      const priorityHtml = item.priority === 'high'
+        ? '<span class="item-priority priority-high">Must do</span>'
+        : item.priority === 'med'
+        ? '<span class="item-priority priority-med">Should do</span>'
+        : '';
       html += `<div class="checklist-item${checked ? ' checked' : ''}" data-id="${item.id}" onclick="toggleTodo('${item.id}')">
         <div class="check-circle"></div>
         <div style="flex:1"><div class="item-text">${item.text}</div>${item.note ? `<div class="item-note">${item.note}</div>` : ''}</div>
@@ -784,6 +771,7 @@ function renderPacking() {
         <span class="cat-count" style="color:${allDone ? 'var(--green)' : 'var(--text3)'}">${catDone}/${catItems.length}${allDone ? ' ✓' : ''}</span>
       </div>
       <div class="packing-cat-items">`;
+
     catItems.forEach(item => {
       const checked = isChecked(item.id);
       html += `<div class="checklist-item${checked ? ' checked' : ''}" onclick="togglePacking('${item.id}')">
@@ -798,7 +786,10 @@ function renderPacking() {
 }
 
 function getCatIcon(cat) {
-  const icons = { 'Clothes':'👕', 'Toiletries':'🧴', 'Tech':'📱', 'Tech & Entertainment':'📱', 'Documents':'📄', 'Misc':'🎒' };
+  const icons = {
+    'Clothes':'👕', 'Toiletries':'🧴', 'Tech':'📱',
+    'Tech & Entertainment':'📱', 'Documents':'📄', 'Misc':'🎒'
+  };
   return icons[cat] || '📦';
 }
 
@@ -882,6 +873,7 @@ function init() {
   updateGlobalProgress();
   setInterval(updateCountdown, 60000);
 }
+
 init();
 </script>
 </body>
